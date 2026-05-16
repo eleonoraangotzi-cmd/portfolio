@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Multimedia Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #2563EB;
+            --accent-blue: #60A5FA;
+            --dark-text: #1F2937;
+            --light-bg: #E0F2FE;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, var(--light-bg) 0%, #F0F9FF 100%);
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            padding: 40px 20px;
+        }
+
+        /* Background decorativo */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(96, 165, 250, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -50px;
+            left: -50px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 1000px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        .hero-title {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            font-size: clamp(3rem, 12vw, 7rem);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 1;
+        }
+
+        .title-word {
+            position: relative;
+            display: inline-block;
+        }
+
+        .title-word.dark {
+            color: var(--dark-text);
+            animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .title-word.dark.word-2 {
+            animation-delay: 0.1s;
+        }
+
+        .title-word.dark.word-3 {
+            animation-delay: 0.2s;
+        }
+
+        .title-word.blue {
+            color: var(--primary-blue);
+            animation: scaleInBlue 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .title-word.blue.word-2 {
+            animation-delay: 0.15s;
+        }
+
+        .title-word.blue.word-3 {
+            animation-delay: 0.3s;
+        }
+
+        /* Decorazione sparkle */
+        .sparkle {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            top: -20px;
+            right: -30px;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+
+        .sparkle-line {
+            position: absolute;
+            width: 35px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue) 0%, transparent 100%);
+            border-radius: 2px;
+            top: -15px;
+            right: -45px;
+            transform: rotate(-45deg);
+            animation: twinkle 2s ease-in-out infinite;
+            animation-delay: 0.3s;
+        }
+
+        /* CTA Buttons */
+        .cta-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .scroll-text {
+            font-size: 0.85rem;
+            color: var(--primary-blue);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .scroll-mouse {
+            width: 24px;
+            height: 40px;
+            border: 2px solid var(--primary-blue);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .scroll-wheel {
+            width: 2px;
+            height: 8px;
+            background: var(--primary-blue);
+            border-radius: 1px;
+            animation: scroll-wheel 1.5s ease-in-out infinite;
+            margin-top: 6px;
+        }
+
+        /* Animazioni */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes scaleInBlue {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+                color: var(--accent-blue);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+                color: var(--primary-blue);
+            }
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes scroll-wheel {
+            to {
+                transform: translateY(8px);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 30px 15px;
+            }
+
+            .hero-title {
+                gap: 10px;
+            }
+
+            .title-word {
+                margin-bottom: 10px;
+            }
+
+            .cta-container {
+                gap: 15px;
+                margin-top: 30px;
+            }
+
+            .btn {
+                padding: 12px 28px;
+                font-size: 0.95rem;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .title-word {
+                display: block;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 14px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-subtitle">Multimedia Designer</p>
+            
+            <h1 class="hero-title">
+                <span class="title-word dark">P</span>
+                <span class="title-word blue">
+                    O
+                    <span class="sparkle"></span>
+                </span>
+                <span class="title-word dark word-2">RT</span>
+                <span class="title-word dark word-3">F</span>
+                <span class="title-word blue word-2">
+                    O
+                    <span class="sparkle-line"></span>
+                </span>
+                <span class="title-word dark">LIO</span>
+            </h1>
+
+            <div class="cta-container">
+                <button class="btn btn-primary" onclick="scrollToSection('projects')">Vedi i miei lavori</button>
+                <button class="btn btn-secondary" onclick="scrollToSection('contact')">Contattami</button>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span class="scroll-text">Scorri</span>
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                console.log(`Sezione "${sectionId}" non trovata. Aggiungi una sezione con id="${sectionId}"`);
+            }
+        }
+
+        // Effetto parallax leggero al movimento del mouse
+        document.addEventListener('mousemove', (e) => {
+            const heroContent = document.querySelector('.hero-content');
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.02;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.02;
+            
+            heroContent.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+
+        // Animate on scroll per elementi futuri
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Osserva elementi con classe 'animate-on-scroll'
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
